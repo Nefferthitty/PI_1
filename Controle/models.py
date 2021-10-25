@@ -11,8 +11,8 @@ class Assessor(models.Model):
 
 class Vereador(models.Model):
     nome_vereador = models.CharField(max_length=200)
-    email = models.EmailField(max_length=200)
-    assessor = models.ForeignKey(Assessor, on_delete=models.CASCADE)
+    email = models.EmailField(max_length=200, default="1@1.com")
+    assessor = models.ForeignKey(Assessor, default="1", on_delete=models.CASCADE)
 
     def __str__(self):
         return "%s" % (self.nome_vereador)
@@ -20,7 +20,7 @@ class Vereador(models.Model):
 class Tecnico(models.Model):
     nome_tecnico = models.CharField(max_length=200)
     email = models.EmailField(max_length=200)
-    vereador = models.ForeignKey(Vereador, on_delete=DO_NOTHING)
+    vereador = models.ForeignKey(Vereador, default="1@1.com", on_delete=DO_NOTHING)
 
     def __str__(self):
         return "%s" % (self.nome_tecnico)
